@@ -81,6 +81,9 @@ const objectsMix = [
     iconBox.innerHTML +=`
     <div>
     <i class="${element.prefix} ${element.type}"></i>
+    <div class="title">
+    ${element.name}
+    </div>
     </div>
     `;
  
