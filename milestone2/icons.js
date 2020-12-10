@@ -5,28 +5,28 @@ $(document).ready(function () {
       name: 'Dog',
       prefix: 'fas',
       type: 'fa-dog',
-      family: 'canid'
+      family: 'animal'
   
     },
     {
       name: 'Cat',
       prefix: 'fas',
       type: 'fa-cat',
-      family: 'feline'
+      family: 'animal'
   
     },
     {
       name: 'Horse',
       prefix: 'fas',
       type: 'fa-horse',
-      family: 'equidae'
+      family: 'animal'
   
     },
     {
       name: 'Robot',
       prefix: 'fas',
       type: 'fa-robot',
-      family: 'android'
+      family: 'object'
   
     },
     {
@@ -72,31 +72,38 @@ $(document).ready(function () {
   
     },
   ];
-  
-    // Selezioniamo il container icons
-   const iconBox = document.querySelector('.icons');
-   const titleBox = document.getElementsByClassName('title');
 
-    objectsMix.forEach(element => {
-      iconBox.innerHTML +=`
-      <div>
-      <i class="${element.prefix} ${element.type}"></i>
-      <div class="title">
-      ${element.name}
-      </div>
-      </div>
-      
-      `;
-   
-    });
   // definiamo dei colori per le icone (blue, orange, purple)
-
+const blue = '#0000ff';
+const orange = '#fe5b1b';
+const purple = '#cc00cc';
 
   //aggiungiamo dei colori usando una funzione
-
-
+  objectsMix.forEach(element=>{
+    if (element.family === 'animal') {
+      element.colour = blue;
+    } else if (element.family === 'human') {
+      element.colour = orange;
+    } else {
+      element.colour = purple;
+    }
+  });
+  console.log(objectsMix);
   //inseriamo le icone colorate nel container
+  
+  const iconBox = document.querySelector('.icons');
 
+  objectsMix.forEach(element => {
+    iconBox.innerHTML +=`
+    <div>
+    <i class="${element.prefix} ${element.type}" style="color:${element.colour}"></i>
+    <div class="title">
+    ${element.name}
+    </div>
+    </div>
+    `;
+ 
+  });
 });
 
 
