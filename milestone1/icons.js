@@ -1,6 +1,6 @@
-$(function () {
+$(document).ready(function () {
   // Creiamo array di oggetti per le icone con le seguenti proprieta: name, prefix, type, family 
-const objectsArray = [
+const objectsMix = [
   {
     name: 'Dog',
     prefix: 'fas',
@@ -72,15 +72,20 @@ const objectsArray = [
 
   },
 ];
+
   // Selezioniamo il container icons
- const iconBox = $('.icons');
+ const iconBox = document.querySelector('.icons');
+ const titleBox = document.getElementsByClassName('title');
   //inseriamo le icone nel container (possiamo creare una funzione tipo print() per inserire gli elementi e richiamarla qui)
-  objectsArray.forEach(element => {
+  objectsMix.forEach(element => {
     iconBox.innerHTML +=`
-    <div><i class= "${element.prefix} ${element.type}"></i></div>
+    <div>
+    <i class="${element.prefix} ${element.type}"></i>
+    </div>
     `;
+ 
   });
-  console.log(iconBox);
+  console.log(objectsMix, iconBox);
 });
 
 
