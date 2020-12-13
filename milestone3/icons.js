@@ -88,6 +88,7 @@ $(document).ready(function () {
       element.colour = purple;
     }
   });
+  console.log(objectsMix);
   //inseriamo le icone nel container come da milestone 2
   const iconBox = document.querySelector('.icons');
 
@@ -116,8 +117,79 @@ $(document).ready(function () {
   });
   console.log(object);
   //aggiungiamo i tipi alla select
-  const typeSelection = document.querySelector('#type');
- const opts = typeSelection.options[typeSelection.selectedIndex];
+  const typeSelection = $('#type');
+  const selectFilter =  document.getElementById('type');
+ ///creazione delle options per filtrare contenuti
+typeSelection.append('<option value="human">Human</option>');
+typeSelection.append('<option value="animal">Animal</option>');
+typeSelection.append('<option value="object">Object</option>');
+
+selectFilter.addEventListener('change',element =>{
+  //selezione lunga con javascript
+  const valueFilter = selectFilter.options[selectFilter.selectedIndex].value;
+  switch (valueFilter) {
+    case 'human':
+      iconBox.innerHTML = '';
+      human.forEach(element => {
+        iconBox.innerHTML +=`
+        <div>
+        <i class="${element.prefix} ${element.type}" style="color:${element.colour}"></i>
+        <div class="title">
+        ${element.name}
+        </div>
+        </div>
+        `;    
+      });
+      break;
+    case 'animal':
+      iconBox.innerHTML = '';
+      animal.forEach(element => {
+        iconBox.innerHTML +=`
+        <div>
+        <i class="${element.prefix} ${element.type}" style="color:${element.colour}"></i>
+        <div class="title">
+        ${element.name}
+        </div>
+        </div>
+        `;    
+      });
+      console.log('animali');
+      break;
+    case 'object':
+      iconBox.innerHTML = '';
+      object.forEach(element => {
+        iconBox.innerHTML +=`
+        <div>
+        <i class="${element.prefix} ${element.type}" style="color:${element.colour}"></i>
+        <div class="title">
+        ${element.name}
+        </div>
+        </div>
+        `;    
+      });
+      console.log('oggetti');
+      break;
+      //all come default della selezione
+    default:
+      iconBox.innerHTML = '';
+      objectsMix.forEach(element => {
+        iconBox.innerHTML +=`
+        <div>
+        <i class="${element.prefix} ${element.type}" style="color:${element.colour}"></i>
+        <div class="title">
+        ${element.name}
+        </div>
+        </div>
+        `;    
+      });
+      console.log('all');
+      break;
+  }
+});
+
+
+
+
  
   //al change mostriamo solo le icone filtrate
   //mostriamo come passare un parametro a change e contemporaneamente destrutturiamo
